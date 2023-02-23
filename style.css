@@ -1,0 +1,98 @@
+body {
+  background-color: #132849;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.tableContainer {
+  display: none;
+}
+
+.tableContainer.active {
+  display: block;
+}
+
+.toolContainer {
+  width: fit-content;
+  margin: 50px auto;
+}
+
+/* ********* btn ********************* */
+
+.selectBtnContainer {
+  display: flex;
+}
+
+.selectBtn {
+  background-color: #e3ebf7;
+  color: #285192;
+  border: 1px solid rgb(3, 7, 34);
+  border-top: 0;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:active {
+  scale: 0.98;
+}
+
+.selectBtn.active {
+  background-color: rgb(252, 244, 244);
+  border: 0;
+}
+
+/* **************************** table Container ************** */
+
+.tableContainer {
+  background-color: rgb(252, 244, 244);
+  padding: 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.formContainer {
+  max-width: 400px;
+  margin: 0 auto 30px;
+}
+
+label {
+  padding: 8px 8px 8px 0;
+  display: block;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.submitBtn {
+  font-size: 16px;
+  padding: 8px 30px;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 2px solid #606060;
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+}

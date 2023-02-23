@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+
+    <title>Document</title>
+</head>
+<body>
+    <!-- <section id="header"></section> -->
+
+
+        <section class="toolContainer">
+            <div class="selectBtnContainer">
+                <button onclick="setActive(0)" class="selectBtn btn active">SellPrice All</button>
+                <button onclick="setActive(1)" class="selectBtn btn">SellPrice One</button>
+                <button onclick="setActive(2)" class="selectBtn btn">SellPrice individual</button>
+            </div>
+
+    
+            <div id="SellPriceAllContainer" class="tableContainer active">
+                <div class="formContainer">
+                    <form id="SellPriceAllform">
+                        <div style="display: flex; justify-content: space-between">
+                            <div style="margin-bottom: 8px;">
+                                <label for="itemName">Item Name</label>
+                                <input type="text" id="itemName" name="itemName" >
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label for="itemPrice">Item Cost Price</label>
+                                <input type="number" id="itemPrice" name="itemPrice" required>
+                            </div>
+                        </div>
+                        
+                        <div style="width: fit-content; margin-left: auto;">
+                            <button type="submit" class="submitBtn btn">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <table id = "SellAlltable">
+                        <tr>
+                          <th>Item Name</th>
+                          <th>Item Price</th>
+                        </tr>
+                       
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+                <div class="formContainer">
+                    <form id="SellPriceAllProfitform">
+                        <div style="margin-bottom: 8px;">
+                            <label for="ProfitMargin">Item Name</label>
+                            <input type="number" id="ProfitMargin" name="ProfitMargin" required >
+                        </div>
+                        <div style="width: fit-content; margin-left: auto;">
+                            <button type="submit" class="submitBtn btn">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="SellPriceOneContainer"  class="tableContainer">
+                <h1>SellPriceOneContainer</h1>
+            </div>
+
+            <div id="SellPriceIndividualContainer"  class="tableContainer">
+                <h1>SellPriceIndividualContainer</h1>
+            </div>
+        </section>
+
+        
+
+    
+    
+</body>
+<script src="index.js"></script>
+</html>
