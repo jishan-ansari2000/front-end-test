@@ -1,79 +1,92 @@
 function setActive(index) {
   let selectBtn = document.getElementsByClassName("selectBtn");
-  let tableContainer = document.getElementsByClassName("tableContainer");
+  let toolContainer = document.getElementsByClassName("toolContainer");
 
   for (let i = 0; i < 3; i++) {
     if (index == i) {
       selectBtn[index].className += " active";
-      tableContainer[index].className += " active";
+      toolContainer[index].className += " active";
     } else {
       selectBtn[i].classList.remove("active");
-      tableContainer[i].classList.remove("active");
+      toolContainer[i].classList.remove("active");
     }
   }
 }
 
-let SellAllArray = [];
-let SellAllFinalArray = [];
-let SellAllTable = document.getElementById("SellAlltable");
-let SellAllTotalCost = 0;
+// ****************************************************************
 
-document
-  .getElementById("SellPriceAllform")
-  .addEventListener("submit", function (event) {
+class ProfileCollaboration {
+  constructor() {
+    this.itemArray = [];
+    this.finalArray = [];
+    this.table = document.getElementById("sellEachtable");
+    this.finalTable = document.getElementById("sellFinalTable");
+    this.emptyRow = document.getElementById("emptyRow");
+    this.totalCost = 0;
+
+    document
+      .getElementById("sellPriceEachform")
+      .addEventListener("submit", this.addItem.bind(this));
+
+    document
+      .getElementById("SellPriceEachProfitform")
+      .addEventListener("submit", this.sellPriceCalculator.bind(this));
+  }
+
+  addItem(event) {
     event.preventDefault();
     const itemName = event.target["itemName"].value;
     const itemPrice = Number(event.target["itemPrice"].value);
 
-    SellAllTotalCost += itemPrice;
+    console.log(itemName, itemPrice);
+
+    this.totalCost += itemPrice;
 
     let temp = {
       itemName: itemName,
       itemPrice: itemPrice,
     };
-    SellAllArray.push(temp);
+    this.itemArray.push(temp);
 
     let tr = document.createElement("tr");
-    // p.className = "subtext";
     tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td>`;
 
-    SellAllTable.appendChild(tr);
+    this.table.appendChild(tr);
 
     event.target["itemName"].value = "";
     event.target["itemPrice"].value = "";
-  });
+  }
 
-document
-  .getElementById("SellPriceAllProfitform")
-  .addEventListener("submit", function (event) {
+  sellPriceCalculator(event) {
     event.preventDefault();
 
     const profitMargin = event.target["ProfitMargin"].value;
 
-    SellAllArray.forEach((item) => {
-      console.log();
+    this.itemArray.forEach((item) => {
+      let percentageWeightage =
+        Math.round((item.itemPrice / this.totalCost) * 10000) / 100;
+
       let item2 = {
         itemName: item.itemName,
         itemPrice: item.itemPrice,
-        itemWeightage:
-          Math.round((item.itemPrice / SellAllTotalCost) * 10000) / 100,
+        itemWeightage: percentageWeightage,
         itemSellingPrice:
-          (Math.round((item.itemPrice / SellAllTotalCost) * 100) / 100) *
-            profitMargin +
-          item.itemPrice,
+          Math.round(percentageWeightage * profitMargin) / 100 + item.itemPrice,
       };
 
-      SellAllFinalArray.push(item2);
+      let tr = document.createElement("tr");
+      tr.innerHTML = `<td>${item2.itemName}</td><td>${item2.itemPrice}</td><td>${item2.itemWeightage}%</td><td>${item2.itemSellingPrice}</td>`;
+
+      this.finalTable.appendChild(tr);
+
+      this.finalArray.push(item2);
     });
 
-    console.log(
-      "sellingPrice: ",
-      SellAllFinalArray,
-      profitMargin,
-      SellAllTotalCost
-    );
+    console.log("sellingPrice: ", profitMargin, this.finalArray);
 
     let tr = document.createElement("tr");
-    // p.className = "subtext";
     tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td>`;
-  });
+  }
+}
+
+let myCar = new ProfileCollaboration();

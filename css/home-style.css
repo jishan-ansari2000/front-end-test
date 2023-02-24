@@ -183,33 +183,46 @@ body {
 
 /* ****************************middle Second****************** */
 
-.middleSecond {
+.about {
   padding-top: 100px;
   padding-bottom: 100px;
   background-color: #e5e7eb;
 }
 
-.middleSecondContainer {
-  max-width: 830px;
+.aboutContainer {
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-.middleSecondText {
-  font-size: 36px;
+.aboutText {
+  font-size: 24px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-weight: 100;
+  font-weight: 500;
   color: #1f2937;
   opacity: 0.8;
-  margin: 0;
+  line-height: 1.3;
 }
 
-.middleSecondSign {
-  text-align: end;
-  font-size: 26px;
-  font-family: sans-serif;
-  font-weight: 700;
-  margin: 10px 40px 0 0;
-  opacity: 0.8;
+.aboutSubContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.aboutSubContainer > * {
+  width: 48%;
+}
+
+.aboutImgBox {
+  height: 320px;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutImgBox > img {
+  height: 100%;
+  margin: 0 auto;
 }
 
 /* ***************************middle Third****************** */
@@ -311,7 +324,7 @@ body {
     width: 40%;
   }
 
-  .middleSecondText {
+  .aboutText {
     font-size: 28px;
   }
 
@@ -384,7 +397,7 @@ body {
     width: 48%;
   }
 
-  .middleSecondText {
+  .aboutText {
     font-size: 24px;
   }
 
