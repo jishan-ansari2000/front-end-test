@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/home-style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
     <section class="header sidePadding">
         <div class="topnav" id="myTopnav">
-         
+
             <a href="#logo" class="navLogo">Header Logo</a>
             <div class="menuContainer">
                 <a href="#home" class="navLink">Home</a>
                 <a href="#about" class="navLink">About</a>
                 <a href="#contact" class="navLink">Contact</a>
             </div>
-            
+
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
-        
+
     </section>
 
     <section class="home sidePadding">
         <div class="homeContainer">
             <div class="homeTextContainer">
-                <h3 class="homeHeading">This website is<br/> awesome</h3> 
-                <p class="homeText">SellPrice is an online tool designed to help you calculate the optimal selling price for each item you buy based on various input parameters such as cost price, profit margin, and taxes. With SellPrice, you can easily and accurately calculate the selling price for your items,</p>
+                <h3 class="homeHeading">This website is<br /> awesome</h3>
+                <p class="homeText">SellPrice is an online tool designed to help you calculate the optimal selling price
+                    for each item you buy based on various input parameters such as cost price, profit margin, and
+                    taxes. With SellPrice, you can easily and accurately calculate the selling price for your items,</p>
                 <button class="homeBtn"> Sign up</button>
             </div>
             <div class="homeImgContainer">
@@ -40,46 +44,21 @@
         </div>
     </section>
 
-    <!-- <section class="middleFirst sidePadding" >
-        <h3 class="middleFirstHeading">Some random information</h3>
-        <div class="middleFirstContainer">
-            <div class="middleFirstSubContainer">
-                <div class="middleFirstImg">
-                    <img src="images/middleFirstImg.avif" alt="middle First" />
-                </div>
-                <p class="middleFirstSubText">This is some subtext under an illustration or image</p>
-            </div>
-            <div class="middleFirstSubContainer">
-                <div class="middleFirstImg">
-                    <img src="images/middleFirstImg.avif" alt="middle First" />
-                </div>
-                <p class="middleFirstSubText">This is some subtext under an illustration or image</p>
-            </div>
-            <div class="middleFirstSubContainer">
-                <div class="middleFirstImg">
-                    <img src="images/middleFirstImg.avif" alt="middle First" />
-                </div>
-                <p class="middleFirstSubText">This is some subtext under an illustration or image</p>
-            </div>
-            <div class="middleFirstSubContainer">
-                <div class="middleFirstImg">
-                    <img src="images/middleFirstImg.avif" alt="middle First" />
-                </div>
-                <p class="middleFirstSubText">This is some subtext under an illustration or image</p>
-            </div>
-        </div>
-    </section> -->
-
-    <section id="about" class="about sidePadding" >
+    <section id="about" class="about sidePadding">
         <div class="aboutContainer">
             <div class="aboutSubContainer">
                 <div class="aboutImgBox">
                     <img src="images/aboutImages/about-1.png" alt="about 1" />
                 </div>
-                <p class="aboutText">SellPrice is an online tool designed to help sellers calculate the optimal selling price for their products. Our platform was created to provide a simple and effective solution to the challenge of determining the best price for products.</p>
+                <p class="aboutText">SellPrice is an online tool designed to help sellers calculate the optimal selling
+                    price for their products. Our platform was created to provide a simple and effective solution to the
+                    challenge of determining the best price for products.</p>
             </div>
             <div class="aboutSubContainer">
-                <p class="aboutText">At SellPrice, we believe that pricing should be transparent and easy to understand. We aim to provide our users with a straightforward platform that allows them to calculate the optimal selling price for their products based on their input parameters, without the need for complicated algorithms or confusing calculations.</p>
+                <p class="aboutText">At SellPrice, we believe that pricing should be transparent and easy to understand.
+                    We aim to provide our users with a straightforward platform that allows them to calculate the
+                    optimal selling price for their products based on their input parameters, without the need for
+                    complicated algorithms or confusing calculations.</p>
                 <div class="aboutImgBox">
                     <img src="images/aboutImages/about-3.png" alt="about 1" />
                 </div>
@@ -88,42 +67,21 @@
                 <div class="aboutImgBox">
                     <img src="images/aboutImages/about-2.png" alt="about 1" />
                 </div>
-                <p class="aboutText">If you're looking for a simple and effective way to calculate the optimal selling price for your products, look no further than SellPrice. Try our platform today and take your sales to the next level.</p>
+                <p class="aboutText">If you're looking for a simple and effective way to calculate the optimal selling
+                    price for your products, look no further than SellPrice. Try our platform today and take your sales
+                    to the next level.</p>
             </div>
         </div>
 
     </section>
-
-    <!-- <section class="middleThird sidePadding" >
-        <div class="middleThirdContainer">
-            <div class="middleThirdSubContainer">
-                <div class="middleTextContainer">
-                    <p class="middleThirdFirstText">Call to action! it's time!</p>
-                    <p class="homeText" style="margin: 0; max-width: none;">Sign up for our product by clicking that button right over there!</p>
-                </div>
-                <div>
-                    <button class="homeBtn" style="border: 2px solid #fff;"> Sign up</button>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <footer id="footer" class="footer">
         <p>Copyright &#169; The Odin Project 2021</p>
     </footer>
 
 
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-            x.className += " responsive";
-          } else {
-            x.className = "topnav";
-          }
-        }
-    </script>
 </body>
-
+<script src="index.js">
+</script>
 
 </html>

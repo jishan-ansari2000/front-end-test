@@ -135,53 +135,7 @@ body {
   width: 100%;
 }
 
-/* **************************middle First**************************** */
-
-.middleFirst {
-  padding-top: 0px;
-  padding-bottom: 80px;
-}
-
-.middleFirstHeading {
-  font-size: 36px;
-  font-family: sans-serif;
-  font-weight: 900;
-  text-align: center;
-  line-height: 1.1;
-  margin: 50px 0;
-}
-
-.middleFirstContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 850px;
-  margin: 0 auto;
-}
-
-.middleFirstSubContainer {
-  width: 21%;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.middleFirstImg {
-  width: 100%;
-}
-
-.middleFirstImg > img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.middleFirstSubText {
-  color: #1f2937;
-  font-size: 15px;
-  margin: 4px;
-  padding: 0;
-}
-
-/* ****************************middle Second****************** */
+/* ****************************about Second****************** */
 
 .about {
   padding-top: 100px;
@@ -225,33 +179,7 @@ body {
   margin: 0 auto;
 }
 
-/* ***************************middle Third****************** */
-
-.middleThird {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
-.middleThirdContainer {
-  background-color: #3882f6;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 85px;
-  border-radius: 16px;
-}
-
-.middleThirdSubContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.middleThirdFirstText {
-  font-size: 26px;
-  font-family: sans-serif;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
-}
+/* *********************** contact ************* */
 
 /* ***********************footer****************** */
 
@@ -268,6 +196,135 @@ body {
   font-family: sans-serif;
 }
 
+/* ******************************* tool *************************** */
+/* ******************************* tool *************************** */
+/* ******************************* tool *************************** */
+
+.tool {
+  background-color: #f9faf8;
+  width: fit-content;
+  margin: 50px auto;
+  border: 2px solid #1f2937;
+  border-radius: 10px;
+}
+.toolContainer {
+  display: none;
+  padding: 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-family: sans-serif;
+}
+
+.toolContainer.active {
+  display: block;
+}
+
+/* ********* btn ********************* */
+
+.selectBtnContainer {
+  display: flex;
+  font-family: sans-serif;
+  margin-right: 20px;
+}
+
+.selectBtn {
+  background-color: #e3ebf7;
+  border: 0;
+  border-right: 1px solid rgb(3, 7, 34);
+  border-bottom: 1px solid rgb(3, 7, 34);
+
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:active {
+  scale: 0.98;
+}
+
+.selectBtn.active {
+  background: transparent;
+  border-bottom: 0;
+}
+
+/* **************************** Tool Container ************** */
+
+.formContainer {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.inputBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputBox > * {
+  width: 48%;
+}
+
+label {
+  padding: 8px 8px 4px 0;
+  display: block;
+  font-size: 18px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c3c3c3;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.submitBtn {
+  font-size: 16px;
+  padding: 8px 30px;
+  border-radius: 16px;
+  border: 2px solid #1f2937;
+  background-color: #ffffff;
+}
+
+.submitBtn:hover {
+  background-color: #1f2937;
+  color: #f9faf8;
+}
+
+/* ****************** table ********************** */
+
+.tableContainer {
+  background-color: #1f2937;
+  color: #fff;
+  margin: 20px 0 10px 0;
+  border-radius: 10px;
+  padding: 10px;
+  /* overflow-x: scroll; */
+  width: 100%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 2px solid #fff;
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+  font-size: 16px !important;
+}
+
+/* #sellFinalTable {
+  display: none;
+} */
+
 @media only screen and (max-width: 1200px) {
 }
 
@@ -278,10 +335,6 @@ body {
 
   .homeText {
     font-size: 16px;
-  }
-
-  .middleThirdSubContainer {
-    flex-direction: column;
   }
 
   .middleTextContainer {
@@ -316,25 +369,12 @@ body {
     margin-top: 50px;
   }
 
-  .middleFirstHeading {
-    font-size: 28px;
-  }
-
-  .middleFirstSubContainer {
-    width: 40%;
-  }
-
   .aboutText {
     font-size: 28px;
   }
 
   .middleSecondSign {
     font-size: 24px;
-  }
-
-  .middleThird {
-    padding-top: 50px;
-    padding-bottom: 50px;
   }
 }
 
@@ -346,14 +386,6 @@ body {
   .sidePadding {
     padding-left: 20px;
     padding-right: 20px;
-  }
-
-  .middleFirstSubContainer {
-    width: 46%;
-  }
-
-  .middleThirdContainer {
-    padding: 40px 60px;
   }
 
   .topnav .navLink {
@@ -403,9 +435,5 @@ body {
 
   .middleSecondSign {
     font-size: 20px;
-  }
-
-  .middleThirdContainer {
-    padding: 40px;
   }
 }
