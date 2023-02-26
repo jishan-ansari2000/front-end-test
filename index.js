@@ -28,13 +28,25 @@ class SellPriceCalculatorClass {
   constructor() {
     this.itemArray = [];
     this.finalArray = [];
+    this.totalCost = 0;
+    this.gstArray = [0, 5, 12, 18];
+
     this.table = document.getElementById("sellEachtable");
     this.finalTable = document.getElementById("sellFinalTable");
     this.sellPriceEachFinaltableContainer = document.getElementById(
       "sellPriceEachFinaltableContainer"
     );
-    this.totalCost = 0;
-    this.gstArray = [0, 5, 12, 18];
+    this.submitBtn = document.getElementById("sellEachSubmitBtn");
+
+    this.editing = {
+      isEditing: false,
+      index: 0,
+    };
+
+    this.inputFields = {
+      itemName: document.getElementById("sellEachitemName"),
+      itemPrice: document.getElementById("sellEachitemPrice"),
+    };
 
     document
       .getElementById("sellPriceEachform")
@@ -45,36 +57,71 @@ class SellPriceCalculatorClass {
       .addEventListener("submit", this.sellPriceCalculator.bind(this));
   }
 
+  // *************** Form Methods ****************************
+
   addItem(event) {
     event.preventDefault();
     const itemName = event.target["itemName"].value;
     const itemPrice = Number(event.target["itemPrice"].value);
+    let gst;
 
-    let gstIndex = Math.floor(Math.random() * 4);
+    if (this.editing.isEditing) {
+      console.log(
+        this.itemArray[this.editing.index],
+        this.itemArray[0],
+        this.editing.index
+      );
+      gst = this.itemArray[this.editing.index].gst;
+    } else {
+      let gstIndex = Math.floor(Math.random() * 4);
+      gst = this.gstArray[gstIndex];
+    }
 
-    let itemCost = Math.round(
-      itemPrice + (itemPrice * this.gstArray[gstIndex]) / 100
-    );
+    let itemCost = Math.round(itemPrice + (itemPrice * gst) / 100);
 
-    this.totalCost += Math.round(
-      itemPrice + (itemPrice * this.gstArray[gstIndex]) / 100
-    );
+    this.totalCost += itemCost;
 
     let temp = {
       itemName: itemName,
       itemPrice: itemPrice,
-      gst: this.gstArray[gstIndex],
-      itemTotalPrice: Math.round(
-        itemPrice + (itemPrice * this.gstArray[gstIndex]) / 100
-      ),
+      gst: gst,
+      itemTotalPrice: itemCost,
     };
 
-    this.itemArray.push(temp);
+    let l;
+
+    if (this.editing.isEditing) {
+      l = this.editing.index;
+      this.itemArray[this.editing.index] = temp;
+    } else {
+      l = this.itemArray.length;
+      this.itemArray.push(temp);
+    }
+
+    let editBtn = `<td class="editBtnBox">
+          <button value="${l}" onclick="sellPriceEach.editRow(this.value)"><i class="fa-solid fa-pen-to-square fa-sm"
+                  style="color: rgb(35, 35, 130);"></i></button>
+          <button value="${l}" onclick="sellPriceEach.deleteRow(this.value)"><i class="fa-solid fa-trash-can fa-sm"
+                  style="color: rgb(172, 27, 27);"></i></button>
+      </td>`;
 
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td>`;
 
-    this.table.appendChild(tr);
+    tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td>${editBtn}`;
+
+    if (this.editing.isEditing) {
+      this.table.children[this.editing.index + 1].innerHTML = tr.innerHTML;
+      console.log(this.table.children[this.editing.index]);
+      this.editing = {
+        isEditing: false,
+        editIndex: 0,
+      };
+      this.submitBtn.innerHTML = "Add Item";
+    } else {
+      this.table.appendChild(tr);
+    }
+
+    console.log(this.table);
 
     event.target["itemName"].value = "";
     event.target["itemPrice"].value = "";
@@ -139,6 +186,34 @@ class SellPriceCalculatorClass {
     });
 
     // console.log("sellingPrice: ", profitMargin, this.finalArray);
+  }
+
+  // ********************** Edit inputed methods ****************
+
+  editRow(rowIndex) {
+    console.log(rowIndex);
+
+    this.inputFields.itemName.value = this.itemArray[rowIndex].itemName;
+    this.inputFields.itemPrice.value = this.itemArray[rowIndex].itemPrice;
+
+    this.editing = {
+      isEditing: true,
+      index: Number(rowIndex),
+    };
+
+    this.submitBtn.innerHTML = "Edit Row";
+  }
+
+  deleteRow(rowIndex) {
+    console.log(rowIndex);
+
+    console.log(this.itemArray[rowIndex]);
+    console.log(this.table.children[rowIndex]);
+
+    this.totalCost -= this.itemArray[rowIndex].itemTotalPrice;
+    this.itemArray.splice(rowIndex, 1);
+
+    this.table.children[rowIndex].remove();
   }
 }
 
