@@ -26,7 +26,9 @@ function myFunction() {
 
 class SellPriceCalculatorClass {
   constructor() {
-    this.itemArray = [];
+    this.itemArray = {};
+    this.lastIndex = 0;
+
     this.finalArray = [];
     this.totalCost = 0;
     this.gstArray = [0, 5, 12, 18];
@@ -41,6 +43,7 @@ class SellPriceCalculatorClass {
     this.editing = {
       isEditing: false,
       index: 0,
+      row: `<th></th>`,
     };
 
     this.inputFields = {
@@ -66,11 +69,6 @@ class SellPriceCalculatorClass {
     let gst;
 
     if (this.editing.isEditing) {
-      console.log(
-        this.itemArray[this.editing.index],
-        this.itemArray[0],
-        this.editing.index
-      );
       gst = this.itemArray[this.editing.index].gst;
     } else {
       let gstIndex = Math.floor(Math.random() * 4);
@@ -79,7 +77,9 @@ class SellPriceCalculatorClass {
 
     let itemCost = Math.round(itemPrice + (itemPrice * gst) / 100);
 
-    this.totalCost += itemCost;
+    this.totalCost += this.editing.isEditing
+      ? itemCost - this.itemArray[this.editing.index].itemTotalPrice
+      : itemCost;
 
     let temp = {
       itemName: itemName,
@@ -94,14 +94,15 @@ class SellPriceCalculatorClass {
       l = this.editing.index;
       this.itemArray[this.editing.index] = temp;
     } else {
-      l = this.itemArray.length;
-      this.itemArray.push(temp);
+      l = this.lastIndex;
+      this.itemArray[this.lastIndex] = temp;
+      this.lastIndex++;
     }
 
     let editBtn = `<td class="editBtnBox">
-          <button value="${l}" onclick="sellPriceEach.editRow(this.value)"><i class="fa-solid fa-pen-to-square fa-sm"
+          <button value="${l}" onclick="sellPriceEach.editRow(this)"><i class="fa-solid fa-pen-to-square fa-sm"
                   style="color: rgb(35, 35, 130);"></i></button>
-          <button value="${l}" onclick="sellPriceEach.deleteRow(this.value)"><i class="fa-solid fa-trash-can fa-sm"
+          <button value="${l}" onclick="sellPriceEach.deleteRow(this)"><i class="fa-solid fa-trash-can fa-sm"
                   style="color: rgb(172, 27, 27);"></i></button>
       </td>`;
 
@@ -110,8 +111,7 @@ class SellPriceCalculatorClass {
     tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td>${editBtn}`;
 
     if (this.editing.isEditing) {
-      this.table.children[this.editing.index + 1].innerHTML = tr.innerHTML;
-      console.log(this.table.children[this.editing.index]);
+      this.editing.row.innerHTML = tr.innerHTML;
       this.editing = {
         isEditing: false,
         editIndex: 0,
@@ -120,8 +120,6 @@ class SellPriceCalculatorClass {
     } else {
       this.table.appendChild(tr);
     }
-
-    console.log(this.table);
 
     event.target["itemName"].value = "";
     event.target["itemPrice"].value = "";
@@ -153,7 +151,7 @@ class SellPriceCalculatorClass {
 
     // ********************************************
 
-    this.itemArray.forEach((item) => {
+    Object.values(this.itemArray).forEach((item) => {
       let percentageWeightage =
         Math.round((item.itemTotalPrice / this.totalCost) * 10000) / 100;
 
@@ -190,7 +188,8 @@ class SellPriceCalculatorClass {
 
   // ********************** Edit inputed methods ****************
 
-  editRow(rowIndex) {
+  editRow(button) {
+    let rowIndex = button.value;
     console.log(rowIndex);
 
     this.inputFields.itemName.value = this.itemArray[rowIndex].itemName;
@@ -199,21 +198,25 @@ class SellPriceCalculatorClass {
     this.editing = {
       isEditing: true,
       index: Number(rowIndex),
+      row: button.parentNode.parentNode,
     };
 
     this.submitBtn.innerHTML = "Edit Row";
   }
 
-  deleteRow(rowIndex) {
-    console.log(rowIndex);
+  deleteRow(button) {
+    let rowIndex = button.value;
 
-    console.log(this.itemArray[rowIndex]);
-    console.log(this.table.children[rowIndex]);
-
+    console.log(this.totalCost);
     this.totalCost -= this.itemArray[rowIndex].itemTotalPrice;
-    this.itemArray.splice(rowIndex, 1);
+    console.log(this.totalCost);
 
-    this.table.children[rowIndex].remove();
+    delete this.itemArray[rowIndex];
+
+    let row = button.parentNode.parentNode;
+
+    // remove the row from the table
+    row.remove();
   }
 }
 
@@ -326,6 +329,8 @@ class SellPriceProductCalculatorClass {
 
 let sellPriceProduct = new SellPriceProductCalculatorClass();
 
+// *************************************** sell Price Individual ********************************
+// *************************************** sell Price Individual ********************************
 // *************************************** sell Price Individual ********************************
 
 class SellPriceIndividualCalculatorClass {
