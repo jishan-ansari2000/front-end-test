@@ -64,6 +64,8 @@
                     </div>
                 </form>
             </div>
+
+
             <div class="tableContainer">
                 <table>
                     <tbody id="sellEachtable">
@@ -85,7 +87,7 @@
 
                     <div class="inputBox">
                         <div>
-                            <label for="ProfitMargin">Overall Profit Margin</label>
+                            <label for="ProfitMargin">Overall Profit (RS)</label>
                             <input type="number" id="ProfitMargin" name="ProfitMargin" required>
                         </div>
                         <div style="width: fit-content; margin: auto 0 0 auto;">
@@ -114,17 +116,17 @@
                 <form id="sellPriceProductform">
                     <div class="inputBox">
                         <div style="margin-bottom: 8px; ">
-                            <label for="itemName">Item Name</label>
-                            <input type="text" id="itemName" name="itemName">
+                            <label for="sellProductItemName">Item Name</label>
+                            <input type="text" id="sellProductItemName" name="itemName">
                         </div>
                         <div style="margin-bottom: 16px;">
-                            <label for="itemPrice">Item Cost Price</label>
-                            <input type="number" id="itemPrice" name="itemPrice" required>
+                            <label for="sellProductItemPrice">Item Cost Price</label>
+                            <input type="number" id="sellProductItemPrice" name="itemPrice" required>
                         </div>
                     </div>
 
                     <div style="width: fit-content; margin-left: auto;">
-                        <button type="submit" class="submitBtn btn">Add Item</button>
+                        <button type="submit" class="submitBtn btn" id="sellProductSubmitBtn">Add Item</button>
                     </div>
                 </form>
             </div>
@@ -189,21 +191,21 @@
                 <form id="sellPriceIndividualform">
                     <div class="inputBox">
                         <div style="margin-bottom: 8px; ">
-                            <label for="itemName">Item Name</label>
-                            <input type="text" id="itemName" name="itemName">
+                            <label for="sellIndividualItemName">Item Name</label>
+                            <input type="text" id="sellIndividualItemName" name="itemName">
                         </div>
                         <div style="margin-bottom: 16px;">
-                            <label for="itemPrice">Item Cost Price</label>
-                            <input type="number" id="itemPrice" name="itemPrice" required>
+                            <label for="sellIndividualItemPrice">Item Cost Price</label>
+                            <input type="number" id="sellIndividualItemPrice" name="itemPrice" required>
                         </div>
                     </div>
                     <div class="inputBox">
                         <div style="margin-bottom: 8px; ">
-                            <label for="profitMargin">Profit Margin(%)</label>
-                            <input type="number" id="profitMargin" name="profitMargin">
+                            <label for="sellIndividualProfitMargin">Profit Margin(%)</label>
+                            <input type="number" id="sellIndividualProfitMargin" name="profitMargin">
                         </div>
                         <div style="width: fit-content; margin: auto 0 8px auto;">
-                            <button type="submit" class="submitBtn btn">Add Item</button>
+                            <button type="submit" class="submitBtn btn" id="sellIndividualSubmitBtn">Add Item</button>
                         </div>
 
                     </div>
@@ -222,6 +224,7 @@
                     </tbody>
 
                     <tr style="height: 30px;">
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
