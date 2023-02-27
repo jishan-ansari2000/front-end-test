@@ -437,6 +437,25 @@ input {
   color: #f9faf8;
 }
 
+.profitInputContainer > div {
+  display: flex;
+}
+
+.profitInputContainer > div > select {
+  width: 50px;
+  padding: 3px;
+  border: 1px solid #c3c3c3;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  font-size: 16px;
+}
+
+.profitInputContainer > div > input {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: 0;
+}
+
 /* ****************** table ********************** */
 
 .tableContainer {

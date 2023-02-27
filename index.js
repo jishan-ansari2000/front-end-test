@@ -67,6 +67,7 @@ class SellPriceCalculatorClass {
     event.preventDefault();
     const itemName = event.target["itemName"].value;
     const itemPrice = Number(event.target["itemPrice"].value);
+
     let gst;
 
     if (this.editing.isEditing) {
@@ -131,7 +132,20 @@ class SellPriceCalculatorClass {
   sellPriceCalculator(event) {
     event.preventDefault();
 
-    const profitMargin = event.target["ProfitMargin"].value;
+    const profitType = event.target["profitType"].value;
+    const profitValue = Number(event.target["profitMargin"].value);
+
+    let profitMargin;
+    let profitPercent;
+
+    if (profitType === "%") {
+      profitMargin = (this.totalCost * profitValue) / 100;
+      profitPercent = profitValue;
+    } else {
+      profitPercent =
+        Math.round((profitValue / this.totalCost) * 100 * 100) / 100;
+      profitMargin = profitValue;
+    }
 
     // Made table ready for new data
 
@@ -335,8 +349,21 @@ class SellPriceProductCalculatorClass {
 
     const productName = event.target["productName"].value;
     const productCount = Number(event.target["productCount"].value);
-    const profitMargin = Number(event.target["ProfitMargin"].value);
 
+    const profitType = event.target["profitType"].value;
+    const profitValue = Number(event.target["profitMargin"].value);
+
+    let profitMargin;
+    let profitPercent;
+
+    if (profitType === "%") {
+      profitMargin = (this.totalCost * profitValue) / 100;
+      profitPercent = profitValue;
+    } else {
+      profitPercent =
+        Math.round((profitValue / this.totalCost) * 100 * 100) / 100;
+      profitMargin = profitValue;
+    }
     // Made table ready for new data
 
     this.finalArray = [];
@@ -457,7 +484,21 @@ class SellPriceIndividualCalculatorClass {
     event.preventDefault();
     const itemName = event.target["itemName"].value;
     const itemPrice = Number(event.target["itemPrice"].value);
-    const profitMargin = Number(event.target["profitMargin"].value);
+
+    const profitType = event.target["profitType"].value;
+    const profitValue = Number(event.target["profitMargin"].value);
+
+    let profitMargin;
+    let profitPercent;
+
+    if (profitType === "%") {
+      profitMargin = (this.totalCost * profitValue) / 100;
+      profitPercent = profitValue;
+    } else {
+      profitPercent =
+        Math.round((profitValue / this.totalCost) * 100 * 100) / 100;
+      profitMargin = profitValue;
+    }
 
     let gst;
 
@@ -471,7 +512,7 @@ class SellPriceIndividualCalculatorClass {
     let itemCost =
       Math.round((itemPrice + (itemPrice * gst) / 100) * 100) / 100;
 
-    let itemProfitPrice = Math.round(itemCost * profitMargin) / 100;
+    let itemProfitPrice = Math.round(itemCost * profitPercent) / 100;
 
     this.totalCost += itemCost;
     this.totalProfit += itemProfitPrice;
@@ -482,7 +523,7 @@ class SellPriceIndividualCalculatorClass {
       gst: gst,
       itemTotalPrice: itemCost,
       itemProfitPrice: itemProfitPrice,
-      profitMargin: profitMargin,
+      profitMargin: profitPercent,
       itemSellingPrice: itemCost + itemProfitPrice,
     };
 
@@ -505,7 +546,7 @@ class SellPriceIndividualCalculatorClass {
       </td>`;
 
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td><td>${profitMargin}%</td>${editBtn}`;
+    tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td><td>${profitPercent}%</td>${editBtn}`;
 
     if (this.editing.isEditing) {
       this.editing.row.innerHTML = tr.innerHTML;

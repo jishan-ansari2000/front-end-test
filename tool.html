@@ -82,13 +82,20 @@
                     </tr>
                 </table>
             </div>
+
             <div class="formContainer">
                 <form id="SellPriceEachProfitform">
 
                     <div class="inputBox">
-                        <div>
-                            <label for="ProfitMargin">Overall Profit (RS)</label>
-                            <input type="number" id="ProfitMargin" name="ProfitMargin" required>
+                        <div class="profitInputContainer">
+                            <label for="profitMargin">Overall Profit:</label>
+                            <div>
+                                <select id="profitMarginType" name="profitType">
+                                    <option value="rupees">&#x20B9;</option>
+                                    <option value="%">%</option>
+                                </select>
+                                <input type="number" id="profitMargin" placeholder="0.00" name="profitMargin" required>
+                            </div>
                         </div>
                         <div style="width: fit-content; margin: auto 0 0 auto;">
                             <button type="submit" class="submitBtn btn">Submit</button>
@@ -159,10 +166,20 @@
                         </div>
                     </div>
                     <div class="inputBox">
-                        <div>
+                        <div class="profitInputContainer">
+                            <label for="profitMargin">Overall Profit:</label>
+                            <div>
+                                <select id="profitMarginType" name="profitType">
+                                    <option value="rupees">&#x20B9;</option>
+                                    <option value="%">%</option>
+                                </select>
+                                <input type="number" id="profitMargin" placeholder="0.00" name="profitMargin" required>
+                            </div>
+                        </div>
+                        <!-- <div>
                             <label for="ProfitMargin">Overall Profit Margin</label>
                             <input type="number" id="ProfitMargin" name="ProfitMargin" required>
-                        </div>
+                        </div> -->
                         <div style="width: fit-content; margin: auto 0 0 auto;">
                             <button type="submit" class="submitBtn btn">Submit</button>
                         </div>
@@ -190,19 +207,26 @@
             <div class="formContainer">
                 <form id="sellPriceIndividualform">
                     <div class="inputBox">
-                        <div style="margin-bottom: 8px; ">
+                        <div style="margin-bottom: 4px; ">
                             <label for="sellIndividualItemName">Item Name</label>
                             <input type="text" id="sellIndividualItemName" name="itemName">
                         </div>
-                        <div style="margin-bottom: 16px;">
+                        <div style="margin-bottom: 4px;">
                             <label for="sellIndividualItemPrice">Item Cost Price</label>
                             <input type="number" id="sellIndividualItemPrice" name="itemPrice" required>
                         </div>
                     </div>
                     <div class="inputBox">
-                        <div style="margin-bottom: 8px; ">
-                            <label for="sellIndividualProfitMargin">Profit Margin(%)</label>
-                            <input type="number" id="sellIndividualProfitMargin" name="profitMargin">
+                        <div class="profitInputContainer" style="margin-bottom: 4px;">
+                            <label for="sellIndividualProfitMargin">Profit:</label>
+                            <div>
+                                <select id="sellIndividualProfitMarginType" name="profitType">
+                                    <option value="rupees">&#x20B9;</option>
+                                    <option value="%">%</option>
+                                </select>
+                                <input type="number" id="sellIndividualProfitMargin" placeholder="0.00"
+                                    name="profitMargin" required>
+                            </div>
                         </div>
                         <div style="width: fit-content; margin: auto 0 8px auto;">
                             <button type="submit" class="submitBtn btn" id="sellIndividualSubmitBtn">Add Item</button>
