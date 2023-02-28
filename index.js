@@ -153,14 +153,7 @@ class SellPriceCalculatorClass {
 
     this.finalArray = [];
 
-    this.finalTable.innerHTML = `<tr>
-        <th>Item Name</th>
-        <th>Item Price</th>
-        <th>Gst(%)</th>
-        <th>Item Total Cost</th>
-        <th>Weightage(%)</th>
-        <th>Selling Price</th>
-    </tr>`;
+    this.finalTable.innerHTML = ``;
 
     this.sellPriceEachFinaltableContainer.style.display = "block";
 
@@ -373,12 +366,7 @@ class SellPriceProductCalculatorClass {
 
     this.finalArray = [];
 
-    this.finalTable.innerHTML = `<tr>
-    <th>Item Name</th>
-    <th>Item Price</th>
-    <th>Gst(%)</th>
-    <th>Item Total Cost</th>
-    </tr>`;
+    this.finalTable.innerHTML = ``;
 
     this.sellPriceProductFinaltableContainer.style.display = "block";
 
@@ -601,15 +589,7 @@ class SellPriceIndividualCalculatorClass {
 
     this.finalArray = [];
 
-    this.finalTable.innerHTML = `<tr>
-    <th>Item Name</th>
-    <th>Item Price</th>
-    <th>Gst(%)</th>
-    <th>Item Total Cost</th>
-    <th>Profit(%)</th>
-    <th>Profit(&#x20B9;)</th>
-    <th>Item Selling Price</th>
-    </tr>`;
+    this.finalTable.innerHTML = ``;
 
     this.sellPriceIndividualFinaltableContainer.style.display = "block";
 

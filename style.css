@@ -9,6 +9,9 @@ font-family: 'PT Sans', sans-serif; */
 body {
   margin: 0;
   padding: 0;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 80px;
 }
 
 .sidePadding {
@@ -155,9 +158,16 @@ body {
 /* ****************************about Second****************** */
 
 .about {
-  padding-top: 100px;
+  padding-top: 30px;
   padding-bottom: 100px;
   background-color: #e5e7eb;
+}
+
+.about > h3 {
+  font-size: 32px;
+  color: rgb(3, 7, 34);
+  text-align: center;
+  margin: 40px;
 }
 
 .aboutContainer {
@@ -320,6 +330,10 @@ body {
 
 .footer {
   background-color: #1f2937;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .footerContainer {
@@ -328,7 +342,7 @@ body {
   padding-top: 30px;
   padding-bottom: 30px;
   max-width: 1100px;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .footerContainer > * {
@@ -464,8 +478,8 @@ input {
   margin: 20px 0 10px 0;
   border-radius: 10px;
   padding: 10px;
-  /* overflow-x: scroll; */
-  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tableContainer > P {
@@ -476,6 +490,17 @@ input {
 
 #sellPriceEachFinaltableContainer {
   display: none;
+}
+
+.tableBox {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.tableBox thead th {
+  position: sticky;
+  top: 0;
+  background-color: #1f2937;
 }
 
 table {
@@ -507,6 +532,26 @@ th {
 
 .editBtnBox > *:active {
   scale: 1.01;
+}
+
+.tableBox::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+.tableBox::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.tableBox::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.tableBox::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* ************************* */
@@ -578,6 +623,20 @@ th {
   .middleSecondSign {
     font-size: 24px;
   }
+
+  .aboutSubContainer > .aboutImgBox {
+    width: 40%;
+  }
+
+  .aboutSubContainer > .aboutText {
+    width: 58%;
+  }
+
+  .tableBox {
+    width: 80vw;
+    overflow-x: auto !important;
+    padding-bottom: 10px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -622,6 +681,23 @@ th {
     max-width: 380px;
     width: 100%;
   }
+
+  .aboutSubContainer > * {
+    width: 100% !important;
+  }
+
+  .aboutImgBox {
+    height: 250px;
+  }
+
+  .selectBtnContainer {
+    margin-right: 0px;
+  }
+
+  .selectBtnContainer > *:nth-child(3) {
+    border-right: 0;
+    border-top-right-radius: 10px;
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -643,5 +719,14 @@ th {
 
   .middleSecondSign {
     font-size: 20px;
+  }
+
+  .selectBtnContainer > * {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .toolContainer {
+    padding: 20px 12px;
   }
 }
