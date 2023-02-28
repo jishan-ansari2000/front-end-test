@@ -133,18 +133,20 @@ class SellPriceCalculatorClass {
     event.preventDefault();
 
     const profitType = event.target["profitType"].value;
-    const profitValue = Number(event.target["profitMargin"].value);
+    const profitValue = Number(event.target["profitValue"].value);
 
-    let profitMargin;
+    let profitAmount;
     let profitPercent;
 
+    let totalSellingPrice = 0;
+
     if (profitType === "%") {
-      profitMargin = (this.totalCost * profitValue) / 100;
+      profitAmount = (this.totalCost * profitValue) / 100;
       profitPercent = profitValue;
     } else {
       profitPercent =
         Math.round((profitValue / this.totalCost) * 100 * 100) / 100;
-      profitMargin = profitValue;
+      profitAmount = profitValue;
     }
 
     // Made table ready for new data
@@ -170,9 +172,11 @@ class SellPriceCalculatorClass {
 
       let itemSellingPrice =
         Math.round(
-          ((percentageWeightage * profitMargin) / 100 + item.itemTotalPrice) *
+          ((percentageWeightage * profitAmount) / 100 + item.itemTotalPrice) *
             100
         ) / 100;
+
+      totalSellingPrice += itemSellingPrice;
 
       let item2 = {
         itemName: item.itemName,
@@ -200,9 +204,10 @@ class SellPriceCalculatorClass {
       this.sellPriceEachFinaltableContainer.children[1].innerHTML = `
       Overall Cost: <span style="font-weight: 400; margin-left: 6px">${this.totalCost}</span>
     `;
+      this.sellPriceEachFinaltableContainer.children[2].innerHTML = `
+      Overall Selling Price: <span style="font-weight: 400; margin-left: 6px">${totalSellingPrice}</span>
+    `;
     });
-
-    // console.log("sellingPrice: ", profitMargin, this.finalArray);
   }
 
   // ********************** Edit inputed methods ****************
@@ -351,18 +356,18 @@ class SellPriceProductCalculatorClass {
     const productCount = Number(event.target["productCount"].value);
 
     const profitType = event.target["profitType"].value;
-    const profitValue = Number(event.target["profitMargin"].value);
+    const profitValue = Number(event.target["profitValue"].value);
 
-    let profitMargin;
+    let profitAmount;
     let profitPercent;
 
     if (profitType === "%") {
-      profitMargin = (this.totalCost * profitValue) / 100;
+      profitAmount = (this.totalCost * profitValue) / 100;
       profitPercent = profitValue;
     } else {
       profitPercent =
         Math.round((profitValue / this.totalCost) * 100 * 100) / 100;
-      profitMargin = profitValue;
+      profitAmount = profitValue;
     }
     // Made table ready for new data
 
@@ -398,10 +403,16 @@ class SellPriceProductCalculatorClass {
     `;
 
     let sellingPrice =
-      Math.round(((this.totalCost + profitMargin) / productCount) * 100) / 100;
+      Math.round(((this.totalCost + profitAmount) / productCount) * 100) / 100;
 
     this.sellPriceProductFinaltableContainer.children[2].innerHTML = `
     ${productName} Selling Price: <span style="font-weight: 400; margin-left: 6px">${sellingPrice}</span>
+    `;
+
+    this.sellPriceProductFinaltableContainer.children[3].innerHTML = `
+    Overall Selling Price: <span style="font-weight: 400; margin-left: 6px">${
+      this.totalCost + profitAmount
+    }</span>
     `;
   }
 
@@ -468,7 +479,8 @@ class SellPriceIndividualCalculatorClass {
     this.inputFields = {
       itemName: document.getElementById("sellIndividualItemName"),
       itemPrice: document.getElementById("sellIndividualItemPrice"),
-      profitMargin: document.getElementById("sellIndividualProfitMargin"),
+      profitValue: document.getElementById("sellIndividualProfitMargin"),
+      profitType: document.getElementById("sellIndividualProfitMarginType"),
     };
 
     document
@@ -486,19 +498,7 @@ class SellPriceIndividualCalculatorClass {
     const itemPrice = Number(event.target["itemPrice"].value);
 
     const profitType = event.target["profitType"].value;
-    const profitValue = Number(event.target["profitMargin"].value);
-
-    let profitMargin;
-    let profitPercent;
-
-    if (profitType === "%") {
-      profitMargin = (this.totalCost * profitValue) / 100;
-      profitPercent = profitValue;
-    } else {
-      profitPercent =
-        Math.round((profitValue / this.totalCost) * 100 * 100) / 100;
-      profitMargin = profitValue;
-    }
+    const profitValue = Number(event.target["profitValue"].value);
 
     let gst;
 
@@ -512,20 +512,38 @@ class SellPriceIndividualCalculatorClass {
     let itemCost =
       Math.round((itemPrice + (itemPrice * gst) / 100) * 100) / 100;
 
-    let itemProfitPrice = Math.round(itemCost * profitPercent) / 100;
+    let profitAmount;
+    let profitPercent;
 
-    this.totalCost += itemCost;
-    this.totalProfit += itemProfitPrice;
+    if (profitType === "%") {
+      profitAmount = (itemCost * profitValue) / 100;
+      profitPercent = profitValue;
+    } else {
+      profitPercent = Math.round((profitValue / itemCost) * 100 * 100) / 100;
+      profitAmount = profitValue;
+    }
+
+    this.totalCost += this.editing.isEditing
+      ? itemCost - this.itemArray[this.editing.index].itemTotalPrice
+      : itemCost;
+
+    this.totalProfit += this.editing.isEditing
+      ? profitAmount - this.itemArray[this.editing.index].itemProfitPrice
+      : profitAmount;
 
     let temp = {
       itemName: itemName,
       itemPrice: itemPrice,
+      profitType: profitType,
+      profitValue: profitValue,
       gst: gst,
       itemTotalPrice: itemCost,
-      itemProfitPrice: itemProfitPrice,
-      profitMargin: profitPercent,
-      itemSellingPrice: itemCost + itemProfitPrice,
+      itemProfitPrice: profitAmount,
+      itemProfitPercent: profitPercent,
+      itemSellingPrice: itemCost + profitAmount,
     };
+
+    console.log(temp);
 
     let l;
 
@@ -545,8 +563,19 @@ class SellPriceIndividualCalculatorClass {
                   style="color: rgb(172, 27, 27);"></i></button>
       </td>`;
 
+    let profitTd;
+    if (profitType === "%") {
+      profitTd = `<td>${profitPercent}%</td>`;
+    } else {
+      profitTd = `<td>&#x20B9; ${profitAmount}</td>`;
+    }
+
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${itemName}</td><td>${itemPrice}</td><td>${profitPercent}%</td>${editBtn}`;
+    tr.innerHTML = `
+      <td>${itemName}</td>
+      <td>${itemPrice}</td>
+      ${profitTd}
+      ${editBtn}`;
 
     if (this.editing.isEditing) {
       this.editing.row.innerHTML = tr.innerHTML;
@@ -562,7 +591,7 @@ class SellPriceIndividualCalculatorClass {
 
     event.target["itemName"].value = "";
     event.target["itemPrice"].value = "";
-    event.target["profitMargin"].value = "";
+    event.target["profitValue"].value = "";
   }
 
   sellPriceCalculator(event) {
@@ -577,13 +606,26 @@ class SellPriceIndividualCalculatorClass {
     <th>Item Price</th>
     <th>Gst(%)</th>
     <th>Item Total Cost</th>
-    <th>Profit Margin(%)</th>
+    <th>Profit(%)</th>
+    <th>Profit(&#x20B9;)</th>
     <th>Item Selling Price</th>
     </tr>`;
 
     this.sellPriceIndividualFinaltableContainer.style.display = "block";
 
     // ********************************************
+
+    // let temp = {
+    //   itemName: itemName,
+    //   itemPrice: itemPrice,
+    //   profitType: profitType,
+    //   profitValue: profitValue,
+    //   gst: gst,
+    //   itemTotalPrice: itemCost,
+    //   itemProfitPrice: profitAmount,
+    //   itemProfitPercent: profitPercent,
+    //   itemSellingPrice: itemCost + profitAmount,
+    // };
 
     Object.values(this.itemArray).forEach((item) => {
       let tr = document.createElement("tr");
@@ -592,7 +634,8 @@ class SellPriceIndividualCalculatorClass {
       <td>${item.itemPrice}</td>
       <td>${item.gst}%</td>
       <td>${item.itemTotalPrice}</td>
-      <td>${item.profitMargin}%</td>
+      <td>${item.itemProfitPercent}%</td>
+      <td>&#x20B9; ${item.itemProfitPrice}</td>
       <td>${item.itemSellingPrice}</td>
       `;
 
@@ -615,7 +658,8 @@ class SellPriceIndividualCalculatorClass {
 
     this.inputFields.itemName.value = this.itemArray[rowIndex].itemName;
     this.inputFields.itemPrice.value = this.itemArray[rowIndex].itemPrice;
-    this.inputFields.profitMargin.value = this.itemArray[rowIndex].profitMargin;
+    this.inputFields.profitValue.value = this.itemArray[rowIndex].profitValue;
+    this.inputFields.profitType.value = this.itemArray[rowIndex].profitType;
 
     this.editing = {
       isEditing: true,

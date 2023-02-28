@@ -88,13 +88,14 @@
 
                     <div class="inputBox">
                         <div class="profitInputContainer">
-                            <label for="profitMargin">Overall Profit:</label>
+                            <label for="sellEachProfitMargin">Overall Profit:</label>
                             <div>
-                                <select id="profitMarginType" name="profitType">
+                                <select id="sellEachProfitMarginType" name="profitType">
                                     <option value="rupees">&#x20B9;</option>
                                     <option value="%">%</option>
                                 </select>
-                                <input type="number" id="profitMargin" placeholder="0.00" name="profitMargin" required>
+                                <input type="number" id="sellEachProfitMargin" placeholder="0.00" name="profitValue"
+                                    required>
                             </div>
                         </div>
                         <div style="width: fit-content; margin: auto 0 0 auto;">
@@ -110,6 +111,7 @@
 
                     </tbody>
                 </table>
+                <p></p>
                 <p></p>
             </div>
 
@@ -167,13 +169,14 @@
                     </div>
                     <div class="inputBox">
                         <div class="profitInputContainer">
-                            <label for="profitMargin">Overall Profit:</label>
+                            <label for="sellProductProfitMargin">Overall Profit:</label>
                             <div>
-                                <select id="profitMarginType" name="profitType">
+                                <select id="sellProductProfitMarginType" name="profitType">
                                     <option value="rupees">&#x20B9;</option>
                                     <option value="%">%</option>
                                 </select>
-                                <input type="number" id="profitMargin" placeholder="0.00" name="profitMargin" required>
+                                <input type="number" id="sellProductProfitMargin" placeholder="0.00" name="profitValue"
+                                    required>
                             </div>
                         </div>
                         <!-- <div>
@@ -193,6 +196,7 @@
 
                     </tbody>
                 </table>
+                <p></p>
                 <p></p>
                 <p></p>
 
@@ -225,7 +229,7 @@
                                     <option value="%">%</option>
                                 </select>
                                 <input type="number" id="sellIndividualProfitMargin" placeholder="0.00"
-                                    name="profitMargin" required>
+                                    name="profitValue" required>
                             </div>
                         </div>
                         <div style="width: fit-content; margin: auto 0 8px auto;">
@@ -243,7 +247,7 @@
                         <tr>
                             <th>Item Name</th>
                             <th>Item Price</th>
-                            <th>Profit Margin(%)</th>
+                            <th>Profit:</th>
                         </tr>
                     </tbody>
 
