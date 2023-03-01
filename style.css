@@ -499,8 +499,8 @@ input {
 
 .tableBox thead th {
   position: sticky;
-  top: 0;
-  background-color: #1f2937;
+  top: -1px;
+  background-color: #000000;
 }
 
 table {
