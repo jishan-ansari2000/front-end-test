@@ -381,32 +381,36 @@ body {
 .selectBtnContainer {
   display: flex;
   font-family: sans-serif;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .selectBtn {
   background-color: #e3ebf7;
   border: 0;
-  border-right: 2px solid rgb(3, 7, 34);
+  /* border-right: 2px solid rgb(3, 7, 34); */
   border-bottom: 2px solid rgb(3, 7, 34);
 
   padding: 10px 20px;
   font-size: 18px;
   font-weight: 700;
+
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.btn {
+/* .btn {
   cursor: pointer;
-}
+} */
 
-.btn:active {
+/* .btn:active {
   scale: 0.98;
-}
+} */
 
-.selectBtn.active {
+/* .selectBtn.active {
   background: transparent;
   border-bottom: 0;
-}
+} */
 
 /* **************************** Tool Container ************** */
 

@@ -561,7 +561,7 @@ class SellPriceIndividualCalculatorClass {
     let tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${itemName}</td>
-      <td>${itemPrice}</td>
+      <td>&#x20B9; ${itemPrice}</td>
       ${profitTd}
       ${editBtn}`;
 
@@ -611,12 +611,10 @@ class SellPriceIndividualCalculatorClass {
       let tr = document.createElement("tr");
       tr.innerHTML = `
       <td>${item.itemName}</td>
-      <td>${item.itemPrice}</td>
+      <td>&#x20B9; ${item.itemPrice}</td>
       <td>${item.gst}%</td>
-      <td>${item.itemTotalPrice}</td>
-      <td>${item.itemProfitPercent}%</td>
-      <td>&#x20B9; ${item.itemProfitPrice}</td>
-      <td>${item.itemSellingPrice}</td>
+      <td>&#x20B9; ${item.itemTotalPrice}</td>
+      <td>&#x20B9; ${item.itemSellingPrice}</td>
       `;
 
       this.finalTable.appendChild(tr);

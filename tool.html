@@ -38,16 +38,16 @@
     <div style="padding: 0 10px;">
         <section class="tool">
             <div class="selectBtnContainer">
-                <button onclick="setActive(0)" class="selectBtn btn active"
+                <!-- <button onclick="setActive(0)" class="selectBtn btn active"
                     style="border-top-left-radius: 10px;">SellPrice
                     Each</button>
-                <button onclick="setActive(1)" class="selectBtn btn">SellPrice Product</button>
-                <button onclick="setActive(2)" class="selectBtn btn">SellPrice individual</button>
+                <button onclick="setActive(1)" class="selectBtn btn">SellPrice Product</button> -->
+                <button onclick="setActive(2)" class="selectBtn btn">Selling Price Calculator</button>
 
             </div>
 
 
-            <div id="sellPriceEachContainer" class="toolContainer active">
+            <div id="sellPriceEachContainer" class="toolContainer">
                 <div class="formContainer">
                     <form id="sellPriceEachform">
                         <div class="inputBox">
@@ -245,7 +245,7 @@
             <!-- *************** Sell Price Individual Container ******************* -->
             <!-- *************** Sell Price Individual Container ******************* -->
 
-            <div id="SellPriceIndividualContainer" class="toolContainer">
+            <div id="SellPriceIndividualContainer" class="toolContainer active">
                 <div class="formContainer">
                     <form id="sellPriceIndividualform">
                         <div class="inputBox">
@@ -263,8 +263,8 @@
                                 <label for="sellIndividualProfitMargin">Profit:</label>
                                 <div>
                                     <select id="sellIndividualProfitMarginType" name="profitType">
-                                        <option value="rupees">&#x20B9;</option>
                                         <option value="%">%</option>
+                                        <option value="rupees">&#x20B9;</option>
                                     </select>
                                     <input type="number" id="sellIndividualProfitMargin" placeholder="0.00"
                                         name="profitValue" required>
@@ -323,8 +323,6 @@
                                     <th>Item Price</th>
                                     <th>Gst(%)</th>
                                     <th>Item Total Cost</th>
-                                    <th>Profit(%)</th>
-                                    <th>Profit(&#x20B9;)</th>
                                     <th>Item Selling Price</th>
                                 </tr>
                             </thead>
